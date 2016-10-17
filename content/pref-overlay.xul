@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="less://komodo/skin/global/global.less" type="text/css"?>
+<?xml-stylesheet href="chrome://messyWhiteSpace/skin/skin.css" type="text/css"?>
+
+<prefwindow id="messy-white-space-prefs"
+	 title="Messy White-space"
+	 xmlns:html="http://www.w3.org/1999/xhtml"
+	 width="300"
+	 height="200"
+	 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	
+	<prefpane id="EOL-widget-pane" label="EOL widget">
+		<preferences>
+			<preference id="pref_tabstyle" name="extensions.messyWhiteSpace.tabstyle" type="string"/>
+		</preferences>
+		<html:h3>
+			Tab style
+		</html:h3>
+		  
+		<hbox align="center">
+			<menulist id="tabStyle" preference="pref_tabStyle" label="Tab Style">
+				<menupopup>
+					<menuitem value="tab" label="Indent with tab"/>
+					<menuitem value="2spaces" label="Indent with 2 spaces"/>
+					<menuitem value="4spaces" label="Indent with 4 spaces"/>
+				</menupopup>
+			</menulist>
+		</hbox>
+	</prefpane>
+
+</prefwindow>
+

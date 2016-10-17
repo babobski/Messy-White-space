@@ -1,0 +1,5 @@
+content messyWhiteSpace content/
+overlay chrome://komodo/content/komodo.xul chrome://messyWhiteSpace/content/overlay.xul
+#overlay chrome://komodo/content/pref/pref-html.xul chrome://messyWhiteSpace/content/pref-overlay.xul
+overlay chrome://komodo/content/commandsOverlay.xul chrome://messyWhiteSpace/content/commandsOverlay.xul
+skin messyWhiteSpace classic/1.0 skin/
