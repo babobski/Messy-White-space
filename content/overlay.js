@@ -26,8 +26,7 @@ if (typeof(extensions.messyWhiteSpace) === 'undefined') extensions.messyWhiteSpa
 		}
 		
 		var content = koDoc.buffer;
-		
-		if (content.length === 0) {
+		if (content === null || content.length === 0) {
 			return false;
 		}
 		
