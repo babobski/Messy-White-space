@@ -3,12 +3,13 @@
 <?xml-stylesheet href="chrome://messyWhiteSpace/skin/skin.css" type="text/css"?>
 
 <dialog id="MessyWhiteSpace" title="Messy White-Space!" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-		buttons="accept,extra1,extra2"
+		buttons="accept,cancel,extra1,extra2"
 		buttonlabelextra1="Toggle view white-space"
 		ondialogextra1="return toggleWhiteSpace();"
 		buttonlabelextra2="Fix it"
 		ondialogextra2="return fixIt();"
-		onload=""
+		buttonlabelcancel="Fix it and reopen file"
+		ondialogcancel="return reopenFile();"
 		ondialogaccept="return doOK();">
 
 	<script>
@@ -17,6 +18,10 @@
 		
 		function doOK() {
 		
+		}
+		
+		function reopenFile() {
+			overlay.reopen_file();
 		}
 		
 		function toggleWhiteSpace() {

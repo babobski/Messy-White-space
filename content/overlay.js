@@ -42,7 +42,7 @@ if (typeof(extensions.messyWhiteSpace) === 'undefined') extensions.messyWhiteSpa
 		}
 		
 		if (spaceOcc > 0) {
-			var features = "chrome,titlebar,toolbar,centerscreen,resizable,alwaysRaised,dialog=no",
+			var features = "chrome,titlebar,toolbar,centerscreen,alwaysRaised,dialog=no",
 				windowVars = {
 				ko: ko,
 				overlay: self,
@@ -72,7 +72,7 @@ if (typeof(extensions.messyWhiteSpace) === 'undefined') extensions.messyWhiteSpa
 		
 		var content = koDoc.buffer;
 		
-		if (content.length === 0) {
+		if (content === null || content.length === 0) {
 			return false;
 		}
 		
@@ -114,7 +114,6 @@ if (typeof(extensions.messyWhiteSpace) === 'undefined') extensions.messyWhiteSpa
 					splitContent = clipboardData.split(clipBoardEol),
 					scimoz = currentView.scimoz;
 					
-				console.log("custom paste");
 				
 				if (scimoz === null) {
 					ko.commands.doCommand('cmd_paste');
@@ -144,6 +143,34 @@ if (typeof(extensions.messyWhiteSpace) === 'undefined') extensions.messyWhiteSpa
 			ko.commands.doCommand('cmd_paste');
 		}
 	
+	}
+	
+	this.reopen_file = function(){
+		var currentView = ko.views.manager.currentView,
+			koDoc = (currentView.koDoc === undefined ? currentView.document : currentView.koDoc);
+		
+		if (currentView === undefined) {
+			return false;
+		}
+		
+		if (koDoc === undefined) {
+			return false;
+		}
+		
+		var file = koDoc.file;
+		
+		if (file === null) {
+			return false;
+		}
+		
+		var path = file.displayPath;
+		
+		self.fixIt();
+		currentView.save();
+		currentView.close();
+		setTimeout(function(){
+			ko.open.displayPath(path);
+		}, 300);
 	}
 	
 	this.test_eol = function(source) {
