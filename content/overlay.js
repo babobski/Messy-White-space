@@ -121,7 +121,6 @@ if (typeof(extensions.messyWhiteSpace) === 'undefined') extensions.messyWhiteSpa
 				}
 				
 				if (scimoz.focus === false) {
-					ko.commands.doCommand('cmd_paste');
 					return false;
 				}
 				
