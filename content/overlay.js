@@ -125,7 +125,7 @@ if (typeof(extensions.messyWhiteSpace) === 'undefined') extensions.messyWhiteSpa
 				}
 				
 				for (var i = 0; i < splitContent.length; i++) {
-					output = output + splitContent[i].replace(/([^\S\t\n]{4}|[^\S\t\n]{2})/g, '	') + currEOL;
+					output = output + splitContent[i].replace(/([^\S\t\n]{4}|[^\S\t\n]{2})/g, '	') + (splitContent[i+1] !== undefined ? currEOL : '');
 				}
 				
 				if (scimoz.selText.length > 0) {
