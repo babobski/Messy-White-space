@@ -81,7 +81,7 @@ if (typeof(extensions.messyWhiteSpace) === 'undefined') extensions.messyWhiteSpa
 			result = '';
 		
 		for (var i = 0; i < splitContent.length; i++) {
-			result = result + splitContent[i].replace(/([^\S\t\n]{4}|[^\S\t\n]{2})/g, '	') + currEOL;
+			result = result + splitContent[i].replace(/([^\S\t\n]{4}|[^\S\t\n]{2})/g, '	') +  (splitContent[i+1] !== undefined ? currEOL : '');
 		}
 		
 		koDoc.buffer = result;
@@ -128,11 +128,17 @@ if (typeof(extensions.messyWhiteSpace) === 'undefined') extensions.messyWhiteSpa
 					output = output + splitContent[i].replace(/([^\S\t\n]{4}|[^\S\t\n]{2})/g, '	') + (splitContent[i+1] !== undefined ? currEOL : '');
 				}
 				
-				if (scimoz.selText.length > 0) {
-					scimoz.replaceSel(output);
+				if (scimoz.multipleSelection) {
+					clipboard.set(output, 'html');
+					ko.commands.doCommand('cmd_paste');
+					return false;
 				} else {
-					scimoz.insertText(scimoz.currentPos, output);
-					scimoz.gotoPos((scimoz.currentPos + output.length));
+					if (scimoz.selText.length > 0) {
+						scimoz.replaceSel(output);
+					} else {
+						scimoz.insertText(scimoz.currentPos, output);
+						scimoz.gotoPos((scimoz.currentPos + output.length));
+					}
 				}
 			} catch(e) {
 				console.error(e.message);
